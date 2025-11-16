@@ -25,9 +25,9 @@
   "scripts": {
     "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "lint:dangerous": "biome lint --write --unsafe .",
+    "lint": "biome check nodes",
+    "lint:fix": "biome check --write nodes",
+    "lint:dangerous": "biome lint --write --unsafe nodes",
     "prepublishOnly": "npm run build",
     "test": "jest",
     "biome:migrate": "biome migrate --write"

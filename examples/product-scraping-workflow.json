@@ -1,0 +1,127 @@
+{
+  "name": "Cheerio Node Example Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+      "name": "When clicking 'Test workflow'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Sample Product Page</title>\n</head>\n<body>\n  <div class=\"container\">\n    <header>\n      <h1>Our Products</h1>\n      <nav>\n        <a href=\"/home\">Home</a>\n        <a href=\"/products\">Products</a>\n      </nav>\n    </header>\n    \n    <div class=\"products\">\n      <article class=\"product\" data-id=\"101\">\n        <h2 class=\"product-title\">Wireless Headphones</h2>\n        <p class=\"description\">High-quality wireless headphones with noise cancellation</p>\n        <span class=\"price\">$199.99</span>\n        <div class=\"rating\" data-stars=\"4.5\">★★★★☆</div>\n        <a href=\"/products/wireless-headphones\" class=\"buy-link\">Buy Now</a>\n      </article>\n      \n      <article class=\"product\" data-id=\"102\">\n        <h2 class=\"product-title\">Smart Watch</h2>\n        <p class=\"description\">Feature-rich smartwatch with health tracking</p>\n        <span class=\"price\">$299.99</span>\n        <div class=\"rating\" data-stars=\"5.0\">★★★★★</div>\n        <a href=\"/products/smart-watch\" class=\"buy-link\">Buy Now</a>\n      </article>\n      \n      <article class=\"product\" data-id=\"103\">\n        <h2 class=\"product-title\">Bluetooth Speaker</h2>\n        <p class=\"description\">Portable speaker with premium sound quality</p>\n        <span class=\"price\">$149.99</span>\n        <div class=\"rating\" data-stars=\"4.0\">★★★★☆</div>\n        <a href=\"/products/bluetooth-speaker\" class=\"buy-link\">Buy Now</a>\n      </article>\n    </div>\n    \n    <footer>\n      <p>© 2024 Example Store</p>\n      <script>console.log('tracking');</script>\n    </footer>\n  </div>\n</body>\n</html>",
+        "selectors": {
+          "selectorValues": [
+            {
+              "name": "productTitles",
+              "selector": ".product-title",
+              "singleItem": false,
+              "trimText": true,
+              "returnHTML": false
+            },
+            {
+              "name": "prices",
+              "selector": ".price",
+              "singleItem": false,
+              "trimText": true,
+              "returnHTML": false
+            },
+            {
+              "name": "descriptions",
+              "selector": ".description",
+              "singleItem": false,
+              "trimText": true,
+              "returnHTML": false
+            },
+            {
+              "name": "productIds",
+              "selector": ".product",
+              "attribute": "data-id",
+              "singleItem": false,
+              "trimText": true,
+              "returnHTML": false
+            },
+            {
+              "name": "ratings",
+              "selector": ".rating",
+              "attribute": "data-stars",
+              "singleItem": false,
+              "trimText": true,
+              "returnHTML": false
+            },
+            {
+              "name": "buyLinks",
+              "selector": ".buy-link",
+              "attribute": "href",
+              "singleItem": false,
+              "trimText": true,
+              "returnHTML": false
+            }
+          ]
+        },
+        "removeElements": "script, nav, footer"
+      },
+      "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
+      "name": "Cheerio - Extract Product Data",
+      "type": "n8n-nodes-cheerio.cheerio",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.html }}",
+        "selectors": {
+          "selectorValues": [
+            {
+              "name": "pageTitle",
+              "selector": "h1",
+              "singleItem": true,
+              "trimText": true,
+              "returnHTML": false
+            },
+            {
+              "name": "cleanContent",
+              "selector": ".container",
+              "singleItem": true,
+              "trimText": false,
+              "returnHTML": true
+            }
+          ]
+        },
+        "removeElements": "script, style, footer, nav"
+      },
+      "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+      "name": "Cheerio - Clean HTML",
+      "type": "n8n-nodes-cheerio.cheerio",
+      "typeVersion": 1,
+      "position": [650, 500]
+    }
+  ],
+  "connections": {
+    "When clicking 'Test workflow'": {
+      "main": [
+        [
+          {
+            "node": "Cheerio - Extract Product Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cheerio - Extract Product Data": {
+      "main": [
+        [
+          {
+            "node": "Cheerio - Clean HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {}
+}

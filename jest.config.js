@@ -7,4 +7,11 @@ module.exports = {
   transform: {
     "^.+\\.ts$": "ts-jest",
   },
+  testEnvironmentOptions: {
+    customExportConditions: ["node", "node-addons"],
+  },
+  globals: {
+    File: class File {},
+    FormData: class FormData {},
+  },
 };

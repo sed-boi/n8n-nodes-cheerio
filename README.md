@@ -91,9 +91,6 @@ npm run build
 
 # Run tests
 npm test
-
-# Lint code
-npm run lint
 ```
 
 ## License

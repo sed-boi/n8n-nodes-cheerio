@@ -1,0 +1,58 @@
+{
+  "name": "n8n-nodes-cheerio",
+  "version": "1.0.0",
+  "description": "n8n node to parse HTML using Cheerio",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n-node",
+    "n8n",
+    "scrape",
+    "cheerio",
+    "parse",
+    "html"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sed-boi/n8n-nodes-cheerio",
+  "author": {
+    "name": "Vishal Chaudhary",
+    "email": "business@ojobit.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sed-boi/n8n-nodes-cheerio"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "lint:dangerous": "biome lint --write --unsafe .",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "biome:migrate": "biome migrate --write"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [],
+    "nodes": [
+      "dist/nodes/Cheerio/Cheerio.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.6",
+    "@types/jest": "^30.0.0",
+    "gulp": "^5.0.1",
+    "jest": "^30.0.0",
+    "n8n-workflow": "~1.113.0",
+    "ts-jest": "^29.3.4",
+    "typescript": "~5.9.2"
+  },
+  "dependencies": {
+    "cheerio": "1.1.2",
+    "n8n-core": "~1.115.0"
+  }
+}

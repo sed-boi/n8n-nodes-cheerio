@@ -98,4 +98,4 @@ npm run lint
 
 ## License
 
-MIT
+[MIT](https://github.com/sed-boi/n8n-nodes-cheerio/blob/main/LICENSE)

@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-cheerio",
+  "name": "@ojobit/n8n-nodes-cheerio",
   "version": "1.0.0",
   "description": "n8n node to parse HTML using Cheerio",
   "keywords": [

@@ -33,7 +33,8 @@
     "biome:migrate": "biome migrate --write"
   },
   "files": [
-    "dist"
+    "dist",
+    "index.js"
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
